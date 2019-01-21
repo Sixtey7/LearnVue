@@ -2,6 +2,8 @@
     <head>
         <link rel="stylesheet" href="index.css">
         <script src="vue/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
     </head>
     <body>
         
@@ -37,7 +39,101 @@
             <p>{{ message }}</p>
             <input v-model="message">
         </div>
+        <div id="app-7">
+            <ol>
+                <todo-item
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"></todo-item>
+            </ol>
+        </div>
+
+        <div id="rawHTML">
+            <p>using mustaches: {{ rawHTML }}</p>
+            <p>Using v-html directive: <span v-html="rawHTML"></span></p>
+        </div>
+
+
+        <div id="betterReverse">
+            <input v-model="message">
+            <p>Computed Reversed Message: "{{ reversedMessage }}"</p>
+        </div>
+
+        <div id = "watch-example">
+            <p>
+                Ask a yes/no question:
+                <input v-model="question">
+            </p>
+            <p>{{ answer }}</p>
+        </div>
+
+        <div id = "classStyle">
+            <div 
+                class="static"
+                v-bind:class = "{ active: isActive,'text-danger': hasError }">
+            Hello World
+            </div>
+            <button v-on:click="toggleActive">Toggle Active</button>
+            <button v-on:click="toggleError">Toggle Error</button>
+        </div>
+
+        <div id = "classStyleComputed">
+            <div v-bind:class = "classObject">Hello World</div>
+            <button v-on:click="toggleActive">Toggle Active</button>
+            <button v-on:click="toggleError">Toggle Error</button>
+        </div>
+
+        <ul id = "indexInFor">
+            <li v-for="(item, index) in items">
+                {{ parentMessage }} - {{ index }} - {{ item.message }}
+            </li>
+        </ul>
+
+        <ul id = 'attrAndValue'>
+            <li v-for="(value, key, index) in object">
+                {{ index + 1 }}. {{ key }}: {{ value }}
+            </li>
+        </ul>
+
+        <div id = 'showEvenNumbers'>
+            <ul>
+                <li v-for = "n in evenNumbers">{{ n }}</li>
+            </ul>
+            <ul>
+                <li v-for = "n in even(numbers)">{{ n }}</li>
+            </ul>
+        </div>
+
+        <div id = "super-todo-list">
+            <form v-on:submit.prevent="addNewTodo">
+                <input
+                    v-model="newTodoText"
+                    id = "new-todo"
+                    placeholder="E.g. Feed the Dog"
+                >
+                <button>Add</button>
+            </form>
+            <ul>
+                <li
+                    is="todo-item"
+                    v-for="(todo, index) in todos"
+                    v-bind.key="todo.id"
+                    v-bind:title="todo.title"
+                    v-on:remove="todos.splice(index, 1)"
+                    ></li>
+            </ul>
+        </div>
         
+        <div id = "click-listener">
+            <button v-on:click = "counter += 1">Add 1</button>
+            <p>The button has been clicked {{ counter }} time(s)</p>
+        </div>
+
+        <div id = "key-listener">
+            <button @click.ctrl="logKeyPress('ctrl and maybe friends')">Ctrl</button>
+            <button @click.exact.ctrl="logKeyPress('Exact Control')">Exact Ctrl</button>
+        </div>
+
         <script src="index.js"></script>
     </body>
 </html>
