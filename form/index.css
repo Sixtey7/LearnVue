@@ -1,0 +1,12 @@
+html, body {
+    margin: 5px;
+    padding: 0;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.text-danger {
+    color: #F00
+}
