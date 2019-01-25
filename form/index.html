@@ -4,12 +4,12 @@
         <script src = "../vue/vue.js"></script>
     </head>
     <body>
-        <form id = "transactionForm">
+        <form id = "transactionForm" @submit.prevent="handleSubmit">
             <label for="name">Name:</label>
             <input id = "name" v-model="name" placeholder="Name of Trans">
             <br/>
             <label for = "amount">Amount $</label>
-            <input id = "amount" v-model.nmber="amount" placeholder="0" type="number">
+            <input id = "amount" v-model.number="amount" placeholder="0" type="number">
             <br />
             <label for = "type">Type</label>
             <select v-model="type">
@@ -26,6 +26,8 @@
             <br />
             <label for = "notes">Notes</label>
             <textarea id = "notes" v-model="notes" placeholder = "Notes"></textarea>
+            <br/>
+            <button type="submit">Submit</button>
         </form>
     <script src="index.js"></script>
     </body>
