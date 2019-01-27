@@ -19,6 +19,17 @@
                 ></blog-post>
             </div>
         </div>
+        <div id = "trans-row-demo">
+            <trans-entry
+                v-for="trans in transactions"
+                v-bind:key="trans.id"
+                v-bind:name="trans.name"
+                v-bind:amount.sync="trans.amount"
+                v-bind:type="trans.type"
+                v-bind:date="trans.date"
+                v-bind:notes="trans.notes"
+            ></trans-entry>
+        </div>
         <script src="./index.js"></script>
     </body>
 </html>
