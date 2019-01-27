@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="./index.css">
+        <script src="https://unpkg.com/pickaday@1.7.0"></script>
+        <script src="../vue/vue.js"></script>
+    </head>
+    <body>
+        <div id = "app">
+            <p>
+                <label for="startDate">Start Date:</label>
+                <input 
+                    rel = "startDate"
+                    v-model = "startDate"
+                    type = "date"
+                >
+            </p>
+            <p>
+                <label for="endDate">End Date:</label>
+                <input 
+                    rel = "endDate"
+                    v-model = "endDate"
+                    type = "date"
+                >
+            </p>
+        </div>
+    </body>
+</html>
