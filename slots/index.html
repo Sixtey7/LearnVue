@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <link rel="stylesheet" href = "index.css">
+        <script src = "../vue/vue.js"></script>
+    </head>
+    <body>
+        <div id = "play-with-slots">
+            <base-layout>
+                <template slot="header">
+                    <h1>Here might be a page title</h1> 
+                </template>
+                <p>A paragraph for the main content</p>
+                <p>And another one.</p>
+        
+                <p slot = "footer">Here's a footer</p>
+            </base-layout>
+        </div>
+
+        <div id = "play-with-todos">
+            <todo-list v-bind:todos="todos">
+                <!-- Define `slotProps` as the name of our slot scope       -->
+                <template slot-scope=" { todo }">
+                    <!-- Define a custom template for todo items, using     -->
+                    <!-- `slotProps` to customize each todo.                -->
+                    <span v-if="todo.isComplete">🗸</span>
+                    {{ todo.text }}
+                </template>
+            </todo-list>
+        </div>
+        <script src = "./index.js"></script>
+    </body>
+</html>
