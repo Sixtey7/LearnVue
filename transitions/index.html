@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="../vue/vue.js"></script>
+    </head>
+    <body>
+        <div id = "demo">
+            <button v-on:click = "show = !show">
+                Toggle
+            </button>
+            <transition name="fade">
+                <p v-if="show">hello</p>
+            </transition>
+        </div>
+
+        <div id = "example-1">
+            <button @click = "show = !show">
+                Toggle Render
+            </button>
+            <transition name = "slide-fade">
+                <p v-if="show">hello</p>
+            </transition>
+        </div>
+
+        <div id = "example-2">
+            <button @click = "show = !show">
+                Toggle show
+            </button>
+            <transition name="bounce">
+                <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+            </transition>
+        </div>
+        
+        <script src="index.js"></script>
+    </body>
+</html>
