@@ -61,6 +61,90 @@
                 </p>
             </transition>
         </div>
+
+        <div id = "if-transition-test">
+            <button @click="show = !show">
+                Do the thing!
+            </button>
+            <transition
+                name="slide-fade"
+                mode = "out-in"
+            >
+                <p v-if = "show" key="showing">Button has been clicked!</p>
+                <p v-else>Button has not yet been clicked</p>
+            </transition>
+        </div>
+        <div id = "try-component-transition">
+            <input type = "radio" id = "v-a" value = "v-a" v-model = "view">
+            <label for = "v-a">Component A</label>
+            <input type = "radio" id = "v-b" value = "v-b" v-model = "view">
+            <label for = "v-b">Component B</label>
+            <transition name="component-fade" mode="out-in">
+                <component v-bind:is="view"></component>
+            </transition>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.js"></script>
+
+        <div id = "list-demo">
+            <button v-on:click = "shuffle">Shuffle</button>
+            <button v-on:click = "add">Add</button>
+            <button v-on:click = "remove">Remove</button>
+            <transition-group name = "list" tag = "p">
+                <span v-for = "item in items" v-bind:key = "item" class = "list-item">
+                    {{ item }}
+                </span>
+            </transition-group>
+        </div>
+                
+        <div id = "flip-list-demo" class = "demo">
+            <button v-on:click = "shuffle">Shuffle</button>
+            <transition-group name = "flip-list" tag = "ul">
+                <li v-for = "item in items" v-bind:key = "item">
+                    {{ item }}
+                </li>
+            </transition-group>
+        </div>
+
+        <div id = "staggered-list-demo">
+            <input v-model = "query">
+            <transition-group
+                name = "staggered-fade"
+                tag = "ul"
+                v-bind:css = "false"
+                v-on:before-enter = "beforeEnter"
+                v-on:enter = "enter"
+                v-on:leave = "leave"
+            >
+                <li 
+                    v-for="(item, index) in computedList"
+                    v-bind:key = "item.msg"
+                    v-bind:data-index = "index"
+                >{{ item.msg }}</li>
+            </transition-group>
+        </div>
+
+        <div id = "dynamic-fade-demo" class = "demo">
+            Fade In: <input type = "range" v-model = "fadeInDuration" min = "0" v-bind:max = "maxFadeDuration">
+            <br />
+            Fade Out: <input type = "range" v-model = "fadeOutDuration" min = "0" v-bind:max = "maxFadeDuration">
+            <transition
+                v-bind:css = "false"
+                v-on:before-enter = "beforeEnter"
+                v-on:enter = "enter"
+                v-on:leave = "leave"
+            >
+                <p v-if = "show">hello</p>
+            </transition>
+            <button
+                v-if = "stop"
+                v-on:click = "stop = false; show = false;"
+            >Start Animating</button>
+            <button
+                v-else
+                v-on:click = "stop = true"
+            >Stop it!</button>
+        </div>
         <script src="index.js"></script>
     </body>
 </html>
