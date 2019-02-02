@@ -44,7 +44,23 @@
                 <p v-if = "show">hello</p>
             </transition>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.js"></script>
         
+        <div id = "example-4">
+            <button @click = "show = !show">
+                Toggle
+            </button>
+            <transition
+                v-on:before-enter="beforeEnter"
+                v-on:enter = "enter"
+                v-on:leave = "leave"
+                v-bind:css="false"
+            >
+                <p v-if = "show">
+                    Demo
+                </p>
+            </transition>
+        </div>
         <script src="index.js"></script>
     </body>
 </html>
