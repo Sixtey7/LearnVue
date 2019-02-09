@@ -57,3 +57,81 @@ new Vue({
 });
 
 
+var EmptyList = { 
+    render(h) {
+        return h('p', 'No Items Found :(');
+    }   
+};
+var TableList = { 
+    render(h, context) {
+        return h('button', 'click me');
+    }   
+};
+var OrderedList = { 
+    render(h, context) {
+        return h('button', 'click me');
+    }   
+};
+var UnorderedList = {
+    /*render(h, context) {
+        return h('ul', context.props.items.map(function (item) {
+            return h('li', item);
+        }));
+    } */
+    render(h) {
+        return h('ul', [h('li', 'item 1'), this.$slots.default]);
+    }  
+};
+
+Vue.component('smart-list', {
+    functional: true,
+    props: {
+        items: {
+            type: Array,
+            required: true
+        },
+        isOrdered: Boolean
+    },
+    render: function(createElement, context) {
+        function appropriateListComponent () {
+            var items = context.props.items;
+
+            if (items.length === 0) {
+                console.log('building empty list');
+                return EmptyList;
+            }
+
+            if (typeof items[0] === 'object') {
+                console.log('Building table list');
+                return TableList;
+            }
+
+            if (context.props.isOrdered) {
+                console.log('Building ordered list');
+                return OrderedList
+            }
+
+            console.log('Building unordered list');
+            //return createElement('div', UnorderedList);
+            /*return createElement(UnorderedList, {
+                props: { 
+                    items: items 
+                }
+            });*/
+            return UnorderedList;
+        }
+    
+        return createElement(
+            appropriateListComponent(),
+            context.data,
+            context.children
+        );
+    }
+});
+
+new Vue({
+    el: '#play-with-smart-list',
+    data: {
+        arrayOfStrings: ["hello", "world"]
+    }
+});
