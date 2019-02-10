@@ -73,14 +73,15 @@ var OrderedList = {
     }   
 };
 var UnorderedList = {
-    /*render(h, context) {
-        return h('ul', context.props.items.map(function (item) {
+    functional: true,
+    render(h, context) {
+        return h('ul', context.parent.arrayOfStrings.map(function (item) {
             return h('li', item);
         }));
-    } */
-    render(h) {
-        return h('ul', [h('li', 'item 1'), this.$slots.default]);
-    }  
+    } 
+    //render(h, context) {
+    //    return h('ul', [h('li', 'item 1'), context.slots.default]);
+    //}  
 };
 
 Vue.component('smart-list', {
@@ -113,11 +114,8 @@ Vue.component('smart-list', {
 
             console.log('Building unordered list');
             //return createElement('div', UnorderedList);
-            /*return createElement(UnorderedList, {
-                props: { 
-                    items: items 
-                }
-            });*/
+            //return createElement(UnorderedList, context.data, context.children
+            //);
             return UnorderedList;
         }
     
