@@ -74,6 +74,7 @@ var OrderedList = {
 };
 var UnorderedList = {
     functional: true,
+    props: ['items'],
     render(h, context) {
         return h('ul', context.parent.arrayOfStrings.map(function (item) {
             return h('li', item);
@@ -113,10 +114,7 @@ Vue.component('smart-list', {
             }
 
             console.log('Building unordered list');
-            //return createElement('div', UnorderedList);
-            //return createElement(UnorderedList, context.data, context.children
-            //);
-            return UnorderedList;
+            return createElement(UnorderedList, context.data, context.children);
         }
     
         return createElement(
