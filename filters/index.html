@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="../vue/vue.js"></script>
+    </head>
+    <body>
+        <div id = "play-with-filters">
+            <label for = "value">Input:</label>
+            <input id = "value" v-model="value">
+
+            <p>Capital: {{ value | capitalize }}</p>
+        </div>
+
+        <script src = "index.js"></script>
+    </body>
+</html>
