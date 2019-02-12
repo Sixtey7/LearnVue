@@ -68,21 +68,20 @@ var TableList = {
     }   
 };
 var OrderedList = { 
+    functional: true,
     render(h, context) {
-        return h('button', 'click me');
+        return h('ol', context.data.items.map(function (item) {
+            return h('li', item);
+        }));
     }   
 };
 var UnorderedList = {
     functional: true,
-    props: ['items'],
     render(h, context) {
-        return h('ul', context.parent.arrayOfStrings.map(function (item) {
+        return h('ul', context.data.items.map(function (item) {
             return h('li', item);
         }));
-    } 
-    //render(h, context) {
-    //    return h('ul', [h('li', 'item 1'), context.slots.default]);
-    //}  
+    }  
 };
 
 Vue.component('smart-list', {
@@ -97,7 +96,7 @@ Vue.component('smart-list', {
     render: function(createElement, context) {
         function appropriateListComponent () {
             var items = context.props.items;
-
+            context.data.items = items;
             if (items.length === 0) {
                 console.log('building empty list');
                 return EmptyList;
@@ -114,7 +113,7 @@ Vue.component('smart-list', {
             }
 
             console.log('Building unordered list');
-            return createElement(UnorderedList, context.data, context.children);
+            return UnorderedList;
         }
     
         return createElement(
