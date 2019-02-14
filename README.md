@@ -7,4 +7,4 @@ Building different chapters in subfolders as I progress through the guide.
 Following: https://vuejs.org/v2/guide/
 
 # NOTE
-Since I plan on doing parts of this offline, I'm requiring vue.js being in a vue/ directory
+Since I plan on doing parts of this offline, I'm requiring vue.js being in a vue/ directory.  Will eventually likely need to expand this to other dependencies as well.
